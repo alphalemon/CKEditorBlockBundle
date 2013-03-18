@@ -1,0 +1,21 @@
+{
+    "name": "alphalemon/app-ckeditor-block-bundle",
+    "description": "Adds the CKEditor web editor to AlphaLemon CMS to manage hypertext contents",
+    "keywords": ["alphalemon", "cms", "app"],
+    "homepage": "http://alphalemon.com",
+    "type": "alphalemon-block-bundle",
+    "license": "MIT",
+    "authors": [{
+      "name": "AlphaLemon",
+      "email": "info@alphalemon.com"
+    }],
+    "require-dev": {
+        "alphalemon/alphalemon-cms-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "AlphaLemon\\Block\\CKEditorBlockBundle": ""
+        }
+    },
+    "target-dir" : "AlphaLemon/Block/CKEditorBlockBundle",
+    "minimum-stability": "dev"
+}

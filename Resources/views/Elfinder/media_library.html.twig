@@ -1,0 +1,88 @@
+{#
+   This file is part of the AlphaLemon CMS Application and it is distributed
+   under the GPL LICENSE Version 2.0. To use this application you must leave
+   intact this copyright notice.
+
+   Copyright (c) AlphaLemon <webmaster@alphalemon.com>
+
+   For the full copyright and license information, please view the LICENSE
+   file that was distributed with this source code.
+
+   For extra documentation and help please visit http://www.alphalemon.com
+
+   @license    GPL LICENSE Version 2.0
+#}
+
+{# extends 'AlphaLemonElFinderBundle:ElFinder:show.html.twig' #}
+
+{% extends 'AlphaLemonThemeEngineBundle:Frontend:base.html.twig' %}
+
+{% block external_stylesheets %}
+{% if enable_yui_compressor is defined and enable_yui_compressor %}
+    {% stylesheets filter='?yui_css,cssrewrite'
+        'bundles/alphalemonelfinder/vendor/ElFinder/css/elfinder.min.css'
+        'bundles/alphalemonelfinder/vendor/ElFinder/css/theme.css'
+        'components/alphalemoncms/jquery-ui/themes/smoothness/*'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% else %}
+    {% stylesheets filter='cssrewrite'
+        'bundles/alphalemonelfinder/vendor/ElFinder/css/elfinder.min.css'
+        'bundles/alphalemonelfinder/vendor/ElFinder/css/theme.css'
+        'components/alphalemoncms/jquery-ui/themes/smoothness/*'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endstylesheets %}
+{% endif %}
+{% endblock %}
+
+{% block external_javascripts %}
+{% if enable_yui_compressor is defined and enable_yui_compressor %}
+    {% javascripts filter='?yui_js'
+        'components/jquery/jquery.min.js'
+        'components/alphalemoncms/jquery-ui/js/jquery-ui.min.js'
+        'bundles/alphalemonelfinder/vendor/ElFinder/js/elfinder.min.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% else %}
+    {% javascripts
+        'components/jquery/jquery.min.js'
+        'components/alphalemoncms/jquery-ui/js/jquery-ui.min.js'
+        'bundles/alphalemonelfinder/vendor/ElFinder/js/elfinder.min.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div id="elfinder">Please wait while the Media Library is loading...</div>
+<input id="al_file" type="hidden" />
+{% endblock %}
+
+{% block internal_header_javascripts %}
+<script type="text/javascript" charset="utf-8">
+    // Helper function to get parameters from the query string.
+    function getUrlParam(paramName) {
+        var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
+        var match = window.location.search.match(reParam) ;
+        
+        return (match && match.length > 1) ? match[1] : '' ;
+    }
+    
+    $(document).ready(function() {
+        
+        var funcNum = getUrlParam('CKEditorFuncNum');
+        var elf = $('#elfinder').elfinder({
+            url : '{{ frontController }}backend/en/al_elFinderMediaConnect',
+            getFileCallback : function(file) {
+                window.opener.CKEDITOR.tools.callFunction(funcNum, '/{% if(assets_folder is defined) %}{{ assets_folder }}{% endif %}/' + file.path);
+                window.close();
+            },
+            resizable: false
+        }).dialogelfinder('instance');
+    });
+</script>
+{% endblock %}

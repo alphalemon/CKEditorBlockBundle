@@ -1,0 +1,5 @@
+imports:
+- { resource: "@CKEditorBlockBundle/Resources/config/app_block.xml" }
+
+assetic:
+    bundles: [CKEditorBlockBundle]

@@ -1,0 +1,15 @@
+CKEDITOR.plugins.add( 'ajaxsave', {
+    icons: 'save',
+    init: function( editor ) {
+        editor.addCommand( 'save', {
+            exec: function( editor ) {    
+                $('body').EditBlock('Content');
+            }
+        });
+        editor.ui.addButton( 'Save', {
+            label: 'Save content',
+            command: 'save',
+            toolbar: 'others'
+        });
+    }
+});

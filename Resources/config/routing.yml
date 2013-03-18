@@ -1,0 +1,2 @@
+_ckeditor_files_manager:
+    resource: "@CKEditorBlockBundle/Resources/config/routing/ckeditor.xml"
