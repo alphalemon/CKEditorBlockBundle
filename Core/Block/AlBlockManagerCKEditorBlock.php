@@ -16,4 +16,12 @@ class AlBlockManagerCKEditorBlock extends AlBlockManagerInlineTextBlock
     {
         return array('Content' => '<p>This is the default text for a new text content</p>');
     }    
+    
+    public function getHtml()
+    {
+        return array('RenderView' => array(
+            'view' => 'CKEditorBlockBundle:Content:text.html.twig',
+            'options' => array('content' => $this->alBlock->getContent(), 'id' => $this->alBlock->getId()),
+        ));
+    }
 }

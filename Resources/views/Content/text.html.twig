@@ -1,0 +1,8 @@
+{% extends "AlphaLemonCmsBundle:Editor:base_editor.html.twig" %}
+
+{% block body %} 
+{# "id" attribute is required by CKEditor #}
+<div id="block_{{ id }}" {{ editor|raw }}>
+{{ content|raw }}
+</div>
+{% endblock %}
