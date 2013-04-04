@@ -1,8 +1,12 @@
 {% extends "AlphaLemonCmsBundle:Editor:base_editor.html.twig" %}
 
 {% block body %} 
+{% if block_manager.getEditorDisabled == false %}
 {# "id" attribute is required by CKEditor #}
 <div id="block_{{ id }}" {{ editor|raw }}>
 {{ content|raw }}
 </div>
+{% else %}
+{{ content|raw }}
+{% endif %}
 {% endblock %}
