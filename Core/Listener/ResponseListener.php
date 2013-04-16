@@ -18,6 +18,7 @@
 namespace AlphaLemon\Block\CKEditorBlockBundle\Core\Listener;
 
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\Templating\EngineInterface;
 
 /**
  * 
@@ -28,9 +29,15 @@ class ResponseListener
 {
     public function onKernelResponse(FilterResponseEvent $event)
     {
+        $request = $event->getRequest();
+        $baseUrl = dirname($request->getBaseUrl());
+        if ($baseUrl == '/') {
+            $baseUrl = "";
+        }
+        
         $response = $event->getResponse();
         $content = $response->getContent();
-        $content = preg_replace('/\<\/body\>/si', '<script src="/bundles/ckeditorblock/vendor/ckeditor/ckeditor.js"></script></body>', $content);
+        $content = preg_replace('/\<\/body\>/si', '<script src="' . $baseUrl . '/bundles/ckeditorblock/vendor/ckeditor/ckeditor.js"></script></body>', $content);
         $response->setContent($content);
     }
 }
