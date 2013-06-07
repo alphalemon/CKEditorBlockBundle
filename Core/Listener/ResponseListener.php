@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the BusinessDropCapBundle and it is distributed
+ * This file is part of the BootstrapButtonBlockBundle and it is distributed
  * under the MIT LICENSE. To use this application you must leave intact this copyright 
  * notice.
  *
@@ -21,7 +21,7 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
- * 
+ * Adds CKEditor script to page, just before the </body> tag
  *
  * @author AlphaLemon <info@alphalemon.com>
  */
