@@ -38,7 +38,7 @@ class AlBlockManagerCKEditorBlockTest extends TestCase
     public function testDefaultValue()
     {
         $expectedValue = array(
-            'Content' => '<p>This is the default text for a new text content</p>'
+            'Content' => 'This is the default content for a new hypertext block'
         );
         
         //alpha_lemon_cms.events_handler
