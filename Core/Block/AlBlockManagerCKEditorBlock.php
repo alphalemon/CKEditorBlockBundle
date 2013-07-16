@@ -25,17 +25,7 @@ use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\InlineTextBlock\AlBlockMan
  * @author AlphaLemon <webmaster@alphalemon.com>
  */
 class AlBlockManagerCKEditorBlock extends AlBlockManagerInlineTextBlock
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultValue()
-    {
-        return array(
-            'Content' => '<p>This is the default text for a new text content</p>'
-        );
-    }    
-    
+{    
     /**
      * {@inheritdoc}
      */

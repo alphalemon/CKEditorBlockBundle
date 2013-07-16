@@ -2,7 +2,11 @@ CKEDITOR.plugins.add( 'ajaxsave', {
     init: function( editor ) {
         editor.addCommand( 'save', {
             exec: function( editor ) {    
-                $('body').EditBlock('Content', editor.getData());
+                $('body').EditBlock('Content', editor.getData(), null, function(activeBlock){ 
+                    editor.destroy(true); 
+                    
+                    createCKEditor(activeBlock.attr('id'));
+                });
             }
         });
         editor.ui.addButton( 'Save', {
